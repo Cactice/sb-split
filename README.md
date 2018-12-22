@@ -10,7 +10,7 @@ Both backend and frontend is needed to run the app.
 
 backend
 ```
-cd backend/experiments
+cd experiments
 FLASK_APP=server.py flask run
 ```
 
