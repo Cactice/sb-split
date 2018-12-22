@@ -6,7 +6,7 @@ split md file to scrapbox appropriate format
 It splits md files and 
 
 # How to get started
-both backend and frontend is needed
+Both backend and frontend is needed to run the app
 
 backend
 ```
