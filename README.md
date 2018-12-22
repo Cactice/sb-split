@@ -20,5 +20,5 @@ cd frontend
 npm i
 npm run dev
 ```
+<img width="1270" alt="screen shot 2018-12-22 at 10 56 47 pm" src="https://user-images.githubusercontent.com/14835424/50375194-e9185080-063c-11e9-9d98-98de6085b3c9.png">
 
-<img width="1279" alt="screen shot 2018-12-22 at 10 55 22 pm" src="https://user-images.githubusercontent.com/14835424/50375187-b4a49480-063c-11e9-800d-d3d93d6c6f82.png">
