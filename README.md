@@ -3,10 +3,10 @@ split md file to scrapbox appropriate format
 
 # what is this
 
-It splits md files and 
+It splits md files to an aprpropriate file for scrapbox.
 
 # How to get started
-Both backend and frontend is needed to run the app
+Both backend and frontend is needed to run the app.
 
 backend
 ```
