@@ -92,7 +92,7 @@ export default withRouter( class TranscriptLists extends React.Component {
 [
 ${each2.content}
 #${each1.name.toLowerCase().replace(/\s/g,'-')}
-#pose-and-motion
+#humanpose
 `
           return (
             <Tab.Pane eventKey={`#${key1},${key2}`}>
