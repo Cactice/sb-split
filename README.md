@@ -18,7 +18,7 @@ backend
 ```
 cd backend
 pip install -r requirements.txt
-vim server.py //change webdriver to appropriate directory
+vim server.py //change webdriver and directory to whatever is appropriate
 ```
 
 frontend
