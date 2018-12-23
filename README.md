@@ -9,12 +9,11 @@ By default, it will detect sections with 6 asterisk (eg. [****** 70s]) and add a
 
 
 # Installation
-Install Selenium chrome Driver
+Install chrome Driver
 https://chromedriver.storage.googleapis.com/index.html?path=2.45/
 
 
-
-backend
+backend (Automatically posts to scrapbox using selenium)
 ```
 cd backend
 pip install -r requirements.txt
