@@ -4,6 +4,9 @@ split md file to scrapbox appropriate format
 # What is this
 
 It splits md files to an apprropriate file for scrapbox.
+<br>
+By default, it will detect sections with 6 asterisk (eg. [****** 70s]) and add a hashtag of the parent section with 7 asterisk(eg. [******* aesthetics]).
+
 
 # Installation
 backend
