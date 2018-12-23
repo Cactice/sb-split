@@ -26,7 +26,7 @@ cd frontend
 npm i
 ```
 
-# How to get started
+# How to run
 Both backend and frontend is needed to run the app.
 
 backend
