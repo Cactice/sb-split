@@ -21,48 +21,98 @@ export default withRouter( class TranscriptLists extends React.Component {
   escapeRegExp(string) {
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
   }
-  //regex = /\[\*{7}\s(.*)\]/i
-  regex  = new RegExp(`\\*{${this.rank}}\\s(.*)\\]`)
-  regex2 = /\[\*{6}\s(.*)\]/i
-
-  format(url){
-    let lines = url.split(/(\[\*{7}\s.*\])/)
-
-    for (let i = 0; i < lines.length; i++) {
-      let line = lines[i]
-    }
+  regex = /\[\*{7}\s(.*)\]/i
+  titleRegex = (rank)=>{return new RegExp(`\\*{${rank}}\\s(.*)\\]`)}
+  regex2     = /\[\*{6}\s(.*)\]/i
+  splitRegex = (rank)=>{return new RegExp(`(\\[\\*{${rank}}\\s.*\\])`)}
 
 
-    let lines2 = lines.map((each,num)=>{
-      let match = each.match(this.regex)
+  splitByAsterisk(target,asteriskRank){
+    let children = target.split(this.splitRegex(asteriskRank))
+    if(children == 'undefined'){return}
+    console.log(children,'hoes!')
+    let childrenMap = children.map((child,num) => {
+      let titleRegex = this.titleRegex(asteriskRank)
+      let match      = child.match(titleRegex)
       if(match == null){return}
-      let name    = each.match(this.regex)[1]
-      let content = lines[num+1]
-      return {name:name, content:content}
-    }).filter(Boolean);
-
-
-    let lines3 = lines2.map((each,num)=>{
-      let lines  = each.content.split(/(\[\*{6}\s.*\])/)
-      let parent = each.name
-
-      let lines2 = lines.map((each,num)=>{
-        let match = each.match(this.regex2)
-        if(match == null){return}
-        let name    = each.match(this.regex2)[1]
-        let content = lines[num+1]
-        return {name:name, content:content}
-      }).filter(Boolean);
-      return {name:each.name, literal:each.content, content:lines2}
-    }).filter(Boolean);
-
-    console.log(lines3, 'heha')
-    this.setState({lines:lines})
-    this.setState({mainObj:lines3})
+      let title          = child.match(titleRegex)[1]
+      let content        = children[num+1]
+      let childrenOfThis = this.splitByAsterisk(content,asteriskRank-1)
+      return {title:title, content:content, children:childrenOfThis}
+    })
+    return childrenMap.filter(Boolean)
 
   }
+
+  format(url){
+    let formatted = this.splitByAsterisk(url,7)
+    this.setState({mainObj:formatted})
+
+  }
+  // format(url){
+  //   let lines = url.split(/(\[\*{7}\s.*\])/)
+
+  //   let lines2 = lines.map((each,num)=>{
+  //     let match = each.match(this.regex)
+  //     if(match == null){return}
+  //     let name    = each.match(this.regex)[1]
+  //     let content = lines[num+1]
+  //     return {name:name, content:content}
+  //   }).filter(Boolean);
+
+
+  //   let lines3 = lines2.map((each,num)=>{
+  //     let lines  = each.content.split(/(\[\*{6}\s.*\])/)
+  //     let parent = each.name
+
+  //     let lines2 = lines.map((each,num)=>{
+  //       let match = each.match(this.regex2)
+  //       if(match == null){return}
+  //       let name    = each.match(this.regex2)[1]
+  //       let content = lines[num+1]
+  //       return {name:name, content:content}
+  //     }).filter(Boolean);
+  //     return {name:each.name, literal:each.content, content:lines2}
+  //   }).filter(Boolean);
+
+  //   console.log(lines3, 'heha')
+  //   this.setState({lines:lines})
+  //   this.setState({mainObj:lines3})
+  // }
+
+  // format(url){
+  //   let lines = url.split(/(\[\*{7}\s.*\])/)
+
+  //   let lines2 = lines.map((each,num)=>{
+  //     let match = each.match(this.regex)
+  //     if(match == null){return}
+  //     let name    = each.match(this.regex)[1]
+  //     let content = lines[num+1]
+  //     return {name:name, content:content}
+  //   }).filter(Boolean);
+
+
+  //   let lines3 = lines2.map((each,num)=>{
+  //     let lines  = each.content.split(/(\[\*{6}\s.*\])/)
+  //     let parent = each.name
+
+  //     let lines2 = lines.map((each,num)=>{
+  //       let match = each.match(this.regex2)
+  //       if(match == null){return}
+  //       let name    = each.match(this.regex2)[1]
+  //       let content = lines[num+1]
+  //       return {name:name, content:content}
+  //     }).filter(Boolean);
+  //     return {name:each.name, literal:each.content, content:lines2}
+  //   }).filter(Boolean);
+
+  //   console.log(lines3, 'heha')
+  //   this.setState({lines:lines})
+  //   this.setState({mainObj:lines3})
+  // }
   componentWillMount() {
     const { router } = this.props
+
     this.setState( {url:router.query.url})
     this.format(router.query.url)
   }
@@ -72,8 +122,8 @@ export default withRouter( class TranscriptLists extends React.Component {
   Iterate = () => {
     return (
       this.state.mainObj.map((each1,key1)=>{
-
-      return each1.content.map((each2,key2)=>{
+      console.log(each1.children,'honyo')
+      return each1.children.map((each2,key2)=>{
         return (
         <ListGroup.Item action href={`#${key1},${key2}`}>
         {each2.name}
@@ -88,10 +138,10 @@ export default withRouter( class TranscriptLists extends React.Component {
   Iterate2 = () => {
     return (
       this.state.mainObj.map((each1,key1)=>{
-        return each1.content.map((each2,key2)=>{
-          let val = `${each2.name}
+        return each1.children.map((each2,key2)=>{
+          let val = `${each2.title}
 ${each2.content}
-#${each1.name.toLowerCase().replace(/\s/g,'-')}
+#${each1.title.toLowerCase().replace(/\s/g,'-')}
 #humanpose
 `
           return (
