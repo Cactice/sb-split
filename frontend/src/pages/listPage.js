@@ -49,67 +49,6 @@ export default withRouter( class TranscriptLists extends React.Component {
     this.setState({mainObj:formatted})
 
   }
-  // format(url){
-  //   let lines = url.split(/(\[\*{7}\s.*\])/)
-
-  //   let lines2 = lines.map((each,num)=>{
-  //     let match = each.match(this.regex)
-  //     if(match == null){return}
-  //     let name    = each.match(this.regex)[1]
-  //     let content = lines[num+1]
-  //     return {name:name, content:content}
-  //   }).filter(Boolean);
-
-
-  //   let lines3 = lines2.map((each,num)=>{
-  //     let lines  = each.content.split(/(\[\*{6}\s.*\])/)
-  //     let parent = each.name
-
-  //     let lines2 = lines.map((each,num)=>{
-  //       let match = each.match(this.regex2)
-  //       if(match == null){return}
-  //       let name    = each.match(this.regex2)[1]
-  //       let content = lines[num+1]
-  //       return {name:name, content:content}
-  //     }).filter(Boolean);
-  //     return {name:each.name, literal:each.content, content:lines2}
-  //   }).filter(Boolean);
-
-  //   console.log(lines3, 'heha')
-  //   this.setState({lines:lines})
-  //   this.setState({mainObj:lines3})
-  // }
-
-  // format(url){
-  //   let lines = url.split(/(\[\*{7}\s.*\])/)
-
-  //   let lines2 = lines.map((each,num)=>{
-  //     let match = each.match(this.regex)
-  //     if(match == null){return}
-  //     let name    = each.match(this.regex)[1]
-  //     let content = lines[num+1]
-  //     return {name:name, content:content}
-  //   }).filter(Boolean);
-
-
-  //   let lines3 = lines2.map((each,num)=>{
-  //     let lines  = each.content.split(/(\[\*{6}\s.*\])/)
-  //     let parent = each.name
-
-  //     let lines2 = lines.map((each,num)=>{
-  //       let match = each.match(this.regex2)
-  //       if(match == null){return}
-  //       let name    = each.match(this.regex2)[1]
-  //       let content = lines[num+1]
-  //       return {name:name, content:content}
-  //     }).filter(Boolean);
-  //     return {name:each.name, literal:each.content, content:lines2}
-  //   }).filter(Boolean);
-
-  //   console.log(lines3, 'heha')
-  //   this.setState({lines:lines})
-  //   this.setState({mainObj:lines3})
-  // }
   componentWillMount() {
     const { router } = this.props
 
