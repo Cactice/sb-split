@@ -4,12 +4,21 @@ split md file to scrapbox appropriate format
 # What is this
 
 It splits md files to an apprropriate file for scrapbox.
+<br>
+By default, it will detect sections with 6 asterisk (eg. [****** 70s]) and add a hashtag of the parent section with 7 asterisk(eg. [******* aesthetics]).<br>
+To change this behavior you have to change from the source code.
+
 
 # Installation
-backend
+Install chrome Driver
+https://chromedriver.storage.googleapis.com/index.html?path=2.45/
+
+
+backend (Automatically posts to scrapbox using selenium)
 ```
 cd backend
 pip install -r requirements.txt
+vim server.py //change webdriver directory and url to whatever is appropriate
 ```
 
 frontend
@@ -18,7 +27,7 @@ cd frontend
 npm i
 ```
 
-# How to get started
+# How to run
 Both backend and frontend is needed to run the app.
 
 backend
