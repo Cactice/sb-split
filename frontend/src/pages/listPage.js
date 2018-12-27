@@ -21,7 +21,8 @@ export default withRouter( class TranscriptLists extends React.Component {
   escapeRegExp(string) {
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
   }
-  regex = /\[\*{7}\s(.*)\]/i
+  //regex = /\[\*{7}\s(.*)\]/i
+  regex  = new RegExp(`\\*{${this.rank}}\\s(.*)\\]`)
   regex2 = /\[\*{6}\s(.*)\]/i
 
   format(url){
@@ -89,7 +90,6 @@ export default withRouter( class TranscriptLists extends React.Component {
       this.state.mainObj.map((each1,key1)=>{
         return each1.content.map((each2,key2)=>{
           let val = `${each2.name}
-[
 ${each2.content}
 #${each1.name.toLowerCase().replace(/\s/g,'-')}
 #humanpose
@@ -98,7 +98,7 @@ ${each2.content}
             <Tab.Pane eventKey={`#${key1},${key2}`}>
             <textarea rows="24" cols="100" defaultValue={val}/>
             <center>
-            <Button onClick={()=>axios.get(`http://127.0.0.1:5000/sb?text=${encodeURIComponent(val)}`).then(console.log('yay'))} >
+            <Button onClick={()=>window.open(`http://scrapbox.io/artresearch/new?body=${encodeURIComponent(val)}`)}>
             POST</Button>
             </center>
             </Tab.Pane>
