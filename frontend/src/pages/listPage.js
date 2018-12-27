@@ -126,7 +126,7 @@ export default withRouter( class TranscriptLists extends React.Component {
       return each1.children.map((each2,key2)=>{
         return (
         <ListGroup.Item action href={`#${key1},${key2}`}>
-        {each2.name}
+        {each2.title}
         </ListGroup.Item>
         )
       }
