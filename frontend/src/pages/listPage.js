@@ -27,25 +27,27 @@ export default withRouter( class TranscriptLists extends React.Component {
   splitRegex = (rank)=>{return new RegExp(`(\\[\\*{${rank}}\\s.*\\])`)}
 
 
-  splitByAsterisk(target,asteriskRank){
+  splitByAsterisk(target,asteriskRank,parentList){
     let children = target.split(this.splitRegex(asteriskRank))
     if(children == 'undefined'){return}
-    console.log(children,'hoes!')
     let childrenMap = children.map((child,num) => {
       let titleRegex = this.titleRegex(asteriskRank)
       let match      = child.match(titleRegex)
       if(match == null){return}
-      let title          = child.match(titleRegex)[1]
-      let content        = children[num+1]
-      let childrenOfThis = this.splitByAsterisk(content,asteriskRank-1)
-      return {title:title, content:content, children:childrenOfThis}
+      let title         = child.match(titleRegex)[1]
+      let content       = children[num+1]
+      let newParentList = parentList.slice()
+
+      newParentList.push(title)
+      let childrenOfThis = this.splitByAsterisk(content,asteriskRank-1,newParentList)
+      return {title:title, content:content, children:childrenOfThis, parentList:parentList}
     })
     return childrenMap.filter(Boolean)
-
   }
 
   format(url){
-    let formatted = this.splitByAsterisk(url,7)
+    let formatted = this.splitByAsterisk(url,7,[])
+    console.log(formatted)
     this.setState({mainObj:formatted})
 
   }
@@ -61,7 +63,6 @@ export default withRouter( class TranscriptLists extends React.Component {
   Iterate = () => {
     return (
       this.state.mainObj.map((each1,key1)=>{
-      console.log(each1.children,'honyo')
       return each1.children.map((each2,key2)=>{
         return (
         <ListGroup.Item action href={`#${key1},${key2}`}>
@@ -85,7 +86,7 @@ ${each2.content}
 `
           return (
             <Tab.Pane eventKey={`#${key1},${key2}`}>
-            <textarea rows="24" cols="100" defaultValue={val}/>
+            <textarea rows="24" cols="100" defaultValue={val} onChange={(event)=>{val=event.target.value;}}/>
             <center>
             <Button onClick={()=>window.open(`http://scrapbox.io/artresearch/new?body=${encodeURIComponent(val)}`)}>
             POST</Button>
@@ -93,19 +94,6 @@ ${each2.content}
             </Tab.Pane>
           )
       })})
-      // this.state.lines.map((each,key)=>{
-      //   let val  = this.state.lines[key] + this.state.lines[key+1]
-      //       val += '\n #game'
-      //   return (
-
-      //     <Tab.Pane eventKey={'#'+key}>
-      //     <textarea rows="24" cols="100" defaultValue={val}/>
-      //     <center>
-      //     <Button onClick={()=>console.log(yo)} > http://127.0.0.1:5000/sb/POST</Button>
-      //     </center>
-      //     </Tab.Pane>
-      //   )
-      // })
     )
   }
   render () {
