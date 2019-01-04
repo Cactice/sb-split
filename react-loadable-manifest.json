@@ -7,7 +7,7 @@
       "publicPath": "static/chunks/commons.d9d4ecc8fbd899c25906.js"
     }
   ],
-  "../../modules/_core": [
+  "../modules/_core": [
     {
       "id": 5,
       "name": "../node_modules/core-js/library/modules/_core.js",
@@ -191,7 +191,7 @@
       "publicPath": "static/chunks/commons.d9d4ecc8fbd899c25906.js"
     }
   ],
-  "../../modules/es6.string.iterator": [
+  "../modules/es6.string.iterator": [
     {
       "id": 36,
       "name": "../node_modules/core-js/library/modules/es6.string.iterator.js",
