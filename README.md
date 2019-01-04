@@ -10,8 +10,6 @@ To change this behavior you have to change from the source code.
 
 
 # Installation
-Install chrome Driver
-https://chromedriver.storage.googleapis.com/index.html?path=2.45/
 
 frontend
 ```
