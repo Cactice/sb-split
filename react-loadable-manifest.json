@@ -7,7 +7,7 @@
       "publicPath": "static/chunks/commons.d9d4ecc8fbd899c25906.js"
     }
   ],
-  "../modules/_core": [
+  "../../modules/_core": [
     {
       "id": 5,
       "name": "../node_modules/core-js/library/modules/_core.js",
