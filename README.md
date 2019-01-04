@@ -15,14 +15,12 @@ https://chromedriver.storage.googleapis.com/index.html?path=2.45/
 
 frontend
 ```
-cd frontend
 npm i
 ```
 
 # How to run
 
 ```
-cd frontend
 npm run dev
 ```
 <img width="1270" alt="screen shot 2018-12-22 at 10 56 47 pm" src="https://user-images.githubusercontent.com/14835424/50375194-e9185080-063c-11e9-9d98-98de6085b3c9.png">
