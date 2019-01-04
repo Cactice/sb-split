@@ -8,7 +8,7 @@
     "predeploy": "npm run build",
     "build": "next build src",
     "export": "next export src",
-    "start": "next start src -p 8000",
+    "start": "next start src",
     "deploy": "gh-pages -d src/.next",
     "heroku-postbuild": "npm run build"
   },
