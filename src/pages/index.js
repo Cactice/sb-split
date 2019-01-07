@@ -8,7 +8,7 @@ import Link from 'next/link'
 import Router from 'next/router'
 
 let paragraph = `
-### YouIndex
+### SB-Split
 `
 
 export default class Index extends React.Component {
